@@ -59,3 +59,7 @@ export function dispatchEventForPluginEventSystem(domEventName,eventSystemFlags,
         targetContainer
     )
 }
+
+export function accumulateSinglePhaseListeners() {
+    
+}
