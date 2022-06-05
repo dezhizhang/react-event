@@ -17,3 +17,7 @@ export function listenToAllSupportedEvents(container) {
         console.log('domEventName',domEventName);
     })
 }
+
+function listenToNativeEvent(domEventName,isCapturePhaseListener,rootContainerElement) {
+    
+}
