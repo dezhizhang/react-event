@@ -29,7 +29,7 @@ function createDOM(vdom,parentDOM) {
         if(Array.isArray(props.children)) {
             reconcileChildren(props.children,dom);
         }else {
-            mount()
+            mount(props.children,dom)
         }
     }
 }
