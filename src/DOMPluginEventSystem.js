@@ -1,6 +1,7 @@
 
 import { allNativeEvents } from './EventRegister';
 import * as SimpleEventPlugin from './SimpleEventPlugin';
+import { dispatchEvent } from './ReactDOMEventListener';
 import { getEventListenerSet } from './ReactDOMComponentTree';
 import { addEventBubbleListener, addEventCaptureListener } from './EventListener';
 
@@ -26,13 +27,15 @@ function listenToNativeEvent(domEventName, isCapturePhaseListener, rootContainer
         addTrappedEventListener(
             rootContainerElement,
             domEventName,
-            eventSystemFlags
+            eventSystemFlags,
+            isCapturePhaseListener
         )
+        
     }
 }
 
 function addTrappedEventListener(rootContainerElement, domEventName, eventSystemFlags, isCapturePhaseListener) {
-    let listener;
+    let listener = dispatchEvent.bind(null,domEventName,eventSystemFlags,rootContainerElement);
     if (isCapturePhaseListener) {
         addEventCaptureListener(rootContainerElement, domEventName, listener);
     } else {
