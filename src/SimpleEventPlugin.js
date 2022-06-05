@@ -1,3 +1,17 @@
-import { registerSimpleEvents } from "./DOMEventProperties";
+import { registerSimpleEvents, topLevelEventsToReactNames } from "./DOMEventProperties";
 
-export { registerSimpleEvents as registerEvents };
+function extractEvents(dispatchQueue,domEventName,targetInst,nativeEvent,nativeEventTarget,eventSystemFlags,targetContainer) {
+    let reactName = topLevelEventsToReactNames.get(domEventName);
+    let SyntheticEventCtor;
+    let reactEventType = domEventName;
+    switch(domEventName) {
+        case 'click':
+            SyntheticEventCtor = SyntheticMouseEvent;
+            default:
+                break;
+    }
+}
+
+
+
+export { registerSimpleEvents as registerEvents,extractEvents };

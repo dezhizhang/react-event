@@ -30,7 +30,7 @@ function listenToNativeEvent(domEventName, isCapturePhaseListener, rootContainer
             eventSystemFlags,
             isCapturePhaseListener
         )
-        
+
     }
 }
 
@@ -45,4 +45,17 @@ function addTrappedEventListener(rootContainerElement, domEventName, eventSystem
 
 function getListenerSetKey(domEventName, isCapturePhaseListener) {
     return `${domEventName}__${isCapturePhaseListener ? 'capture' : 'bubble'} `;
+}
+
+export function dispatchEventForPluginEventSystem(domEventName,eventSystemFlags,nativeEvent,targetInst,targetContainer) {
+    let nativeEventTarget = nativeEvent.target;
+    let dispatchQueue = [];
+    SimpleEventPlugin.extractEvents(
+        dispatchQueue,
+        domEventName,
+        targetInst,
+        nativeEvent,
+        eventSystemFlags,
+        targetContainer
+    )
 }
