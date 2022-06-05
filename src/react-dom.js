@@ -24,6 +24,8 @@ function createDOM(vdom, parentDOM) {
     } else {
         dom = document.createElement(type);
     }
+    let returnFiber = parentDOM[internalInstanceKey] || null;
+    
     let fiber = { tag: HostComponent, type, stateNode: dom }
     dom[internalInstanceKey] = fiber;
     dom[internalPropsKey] = props;
